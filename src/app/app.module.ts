@@ -1,16 +1,26 @@
+import { DataService } from './../../../../HttpServices/src/app/Services/Data-Service';
+import { FollowersServiceService } from './Services/followers-service.service';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { FollowersComponent } from './followers/followers.component';
+import { AppErrorHandler } from './Utilities/AppErrorHandler';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FollowersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
+      ],
+  providers: [      
+      FollowersServiceService,      
+      {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
